@@ -22,7 +22,6 @@ lunches = str(lunchElements)
 
 #regEx för att radera fula "HTML" strings som råkar komma med i response
 #mer om regex här: https://www.w3schools.com/python/python_regex.asp
-
 x = re.sub('/td>, <td class="td_title">', " ", lunches)
 y = re.sub('<td class="td_title">', " ", x)
 z = re.sub('/td>', "", y)
