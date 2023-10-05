@@ -5,16 +5,17 @@ async def send_message(message, user_message, is_private):
     try:
         response = responses.handle_response(user_message)
         print(f"Response: {response}")  # Add this line for debugging
-        if response:
-            await message.author.send(response) if is_private else await message.channel.send(response)
-            print("Message sent successfully")  # Add this line for debugging
+        await message.author.send(response) if is_private else await message.channel.send(response)
     except Exception as e:
-        print(e)
+        print(f"error is {e}")
 
 
 def run_discord_bot():
-    TOKEN = 'MTE1OTE0MTg0Mjk0ODk4OTAzOA.GArfNk.rL3Bo5kR3CJELYyTwaHb51QUT6kTO9q4M_QnJ0'
-    client = discord.Client(intents=discord.Intents.default())
+    TOKEN = 'MTE1OTQzMzAyOTA1NjQ3OTI1Mw.GFojRj.akPYzfWi23Xzsly3085YEEskBzB_GhNoFEhZuk'
+    intents = discord.Intents.default()
+    intents.message_content = True
+    intents.messages = True
+    client = discord.Client(intents=intents)
 
     @client.event
     async def on_ready():
@@ -25,20 +26,18 @@ def run_discord_bot():
         if message.author == client.user:
             return
 
-        user_message = message.content.lower().strip()  # Convert to lowercase and remove leading/trailing spaces
-
-        print(user_message)
+        username = str(message.author)
+        user_message = str(message.content)  # Convert to lowercase and remove leading/trailing spaces
+        channel = str(message.channel)
+        
+        print(f"{username}said {user_message} in {channel}")
         
         # Check for the command prefix without the '?'
-        if user_message.startswith('dagenslunch'):
-            response = responses.handle_response(user_message)
-            if response:
-                await send_message(message, response, is_private=True)
-        elif user_message.startswith('?dagenslunch'):
-            response = responses.handle_response(user_message)
-            if response:
-                await send_message(message, response, is_private=True)
+        if user_message[0] == "?":
+            user_message = user_message[1:]        
+            await send_message(message, user_message, is_private=True)
         else:
             await send_message(message, user_message, is_private=False)
+        
 
     client.run(TOKEN)
