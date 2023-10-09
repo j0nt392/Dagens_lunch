@@ -41,6 +41,6 @@ def handle_response(message) -> str:
 
     if p_message == 'dagenslunch':
         lunch = lunchElements
-        return "**Dagens utbud på Karolinska!** \n" + "-" + lunch1 + "\n" + "-" + lunch2 + "\n" + "-" + lunch3
+        return "**Dagens utbud på Karolinska:** \n" + "-" + lunch1 + "\n" + "-" + lunch2 + "\n" + "-" + lunch3
     else:
         return 
