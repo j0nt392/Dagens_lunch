@@ -12,3 +12,4 @@ idna==3.4
 multidict==6.0.4
 soupsieve==2.5
 yarl==1.9.2
+aiohttp==3.7.4
