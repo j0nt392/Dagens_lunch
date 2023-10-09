@@ -36,10 +36,6 @@ for i, x in enumerate(lunchElements):
     elif x != "\n" and count == 2:
         lunch3 += x
 
-print(lunch1)
-print(lunch2)
-print(lunch3)
-
 def handle_response(message) -> str:
     p_message = message.lower()
 
