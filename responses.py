@@ -15,7 +15,7 @@ import re
 url= 'https://jonsjacob.gastrogate.com/lunch'
 
 def get_lunches():
-    response = requests.get(url, headers=headers)
+    response = requests.get(url)
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
