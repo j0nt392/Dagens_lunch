@@ -27,11 +27,11 @@ def run_discord_bot():
         if message.author == client.user:
             return
 
-        username = str(message.author)
+        # username = str(message.author)
         user_message = str(message.content)  # Convert to lowercase and remove leading/trailing spaces
-        channel = str(message.channel)
+        # channel = str(message.channel)
         
-        print(f"{username}said {user_message} in {channel}")
+        # print(f"{username}said {user_message} in {channel}")
         
         # Check for the command prefix without the '?'
         if user_message[0] == "?":
