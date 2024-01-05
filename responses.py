@@ -86,12 +86,11 @@ def skolschemat(arg):
             dagensklassrum = f"> {event['location']}\n"
 
     if arg == "veckansschema":
-        return f"### Schema vecka {datetime.date.today().isocalendar()[1]} \n {veckansschema}"
+        return veckansschema
     elif arg == "dagensschema":
-        return f"### {datetime.date.today().strftime('%A')} \n {dagensschema}"
+        return dagensschema
     elif arg == "dagensklassrum":
-        print(dagensklassrum)
-        return "### Dagens klassrum \n" + dagensklassrum
+        return dagensklassrum
 
 def get_lunches():
     response = requests.get(restaurangurl)
@@ -123,11 +122,20 @@ def handle_response(message) -> str:
         else:
             return "Hittade inga menyer. =("    
     elif p_message == 'veckansschema':
-        return skolschemat('veckansschema')
+        if len(skolschemat('veckansschema')) < 1:
+            return "Inga lektioner denna vecka"
+        else:
+            return f"### Schema vecka {datetime.date.today().isocalendar()[1]} \n {skolschemat('veckansschema')}"
     elif p_message == 'dagensschema':
-        return skolschemat('dagensschema')
+        if len(skolschemat('dagensschema')) < 1:
+            return "Inga lektioner idag"
+        else:
+            return f"### {datetime.date.today().strftime('%A')} \n {skolschemat('dagensschema')}"
     elif p_message == 'dagensklassrum':
-        return skolschemat('dagensklassrum')
+        if len(skolschemat('dagensklassrum')) < 1:
+            return "Det är ingen lektion idag."
+        else:
+            return "### Dagens klassrum \n" + skolschemat('dagensklassrum')
     elif p_message == 'dagensmeme':
         return dagens_meme()
     else:
