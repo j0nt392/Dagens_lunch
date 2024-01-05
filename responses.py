@@ -25,14 +25,15 @@ def get_current_week_dates():
     end_week = start_week + datetime.timedelta(days=6)
     return start_week, end_week
 
-start_week, end_week = get_current_week_dates()
-
 def dagens_meme():
     response = requests.get(memeurl, headers=headers).json()
     image_links = [item['image'] for item in response]
     return random.choice(image_links)
 
 def skolschemat(arg):
+    
+    start_week, end_week = get_current_week_dates()
+
     # URL till .ics-filen
     ics_url = "https://cloud.timeedit.net/nackademin/web/1/ri6925ZQ1Q21e4QZ05Q8dt9QZB8ZZ4891u1YZ6Qy575t2nDb1F7QA2889B3EFAE30451A0C8.ics"
 
