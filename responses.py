@@ -7,16 +7,8 @@ import random
 import os
 
 #URL länk till karolinskas restaurang
-restaurangurl= 'https://jonsjacob.gastrogate.com/lunch'
 
-#memeurl
-memeurl = "https://programming-memes-images.p.rapidapi.com/v1/memes"
 
-#memeheaders
-headers = {
-	"X-RapidAPI-Key": os.environ.get('X-RapidAPI-Key'),
-	"X-RapidAPI-Host": "programming-memes-images.p.rapidapi.com"
-}
 
 # Funktion för att hämta start- och slutdatum för aktuell vecka
 def get_current_week_dates():
@@ -26,6 +18,14 @@ def get_current_week_dates():
     return start_week, end_week
 
 def dagens_meme():
+    #memeurl
+    memeurl = "https://programming-memes-images.p.rapidapi.com/v1/memes"
+
+    #memeheaders
+    headers = {
+        "X-RapidAPI-Key": os.environ.get('X-RapidAPI-Key'),
+        "X-RapidAPI-Host": "programming-memes-images.p.rapidapi.com"
+    }
     response = requests.get(memeurl, headers=headers).json()
     image_links = [item['image'] for item in response]
     return random.choice(image_links)
@@ -94,13 +94,14 @@ def skolschemat(arg):
         return dagensklassrum
 
 def get_lunches():
+    restaurangurl= 'https://jonsjacob.gastrogate.com/lunch'
     response = requests.get(restaurangurl)
 
     soup = BeautifulSoup(response.text, 'html.parser')
 
     lunchElements = soup.find("tbody", class_="lunch-day-content").text
     lunchElements = re.sub('\s+',' ',lunchElements)
-    lunchElements = lunchElements.replace("105 kr", "- 105 kr" + "\n")
+    lunchElements = lunchElements.replace("115 kr", "\n")
     lunches = []
     current_lunch = ""
     for x in lunchElements:
@@ -109,8 +110,9 @@ def get_lunches():
         else:
             lunches.append(current_lunch)
             current_lunch = ""
+    print(lunchElements)
     return lunches
-
+get_lunches()
 def handle_response(message) -> str:
     p_message = message.lower()
     if p_message == 'dagenslunch':
@@ -120,8 +122,6 @@ def handle_response(message) -> str:
             for lunch in lunches:
                 message += "-" + lunch + "\n"
             return message
-        else:
-            return "Hittade inga menyer. =("    
     elif p_message == 'veckansschema':
         if len(skolschemat('veckansschema')) < 1:
             return "Inga lektioner denna vecka"
