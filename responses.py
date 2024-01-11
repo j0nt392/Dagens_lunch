@@ -5,10 +5,21 @@ import re
 import datetime
 import random
 import os
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 
 #URL länk till karolinskas restaurang
-
-
+def generate_response(input_text):
+    inputs = tokenizer.encode(input_text, return_tensors='pt')
+    outputs = model.generate(inputs, 
+                            max_length=200, 
+                            do_sample=True,
+                            num_return_sequences=1,  # Generate 3 responses at once
+                            temperature=0.9, 
+                            repetition_penalty=1.6,
+                            top_k=100, 
+                            top_p=0.7)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 # Funktion för att hämta start- och slutdatum för aktuell vecka
 def get_current_week_dates():
@@ -110,13 +121,13 @@ def get_lunches():
         else:
             lunches.append(current_lunch)
             current_lunch = ""
-    print(lunchElements)
     return lunches
+
 get_lunches()
 def handle_response(message) -> str:
     p_message = message.lower()
+    lunches = get_lunches()
     if p_message == 'dagenslunch':
-        lunches = get_lunches()
         if len(lunches) > 0:
             message = "**Dagens utbud på Karolinska:**\n" 
             for lunch in lunches:
@@ -139,5 +150,10 @@ def handle_response(message) -> str:
             return "### Dagens klassrum \n" + skolschemat('dagensklassrum')
     elif p_message == 'dagensmeme':
         return dagens_meme()
+    elif p_message == 'dagensveg':
+        message = "Todays lunches are"
+        for lunch in lunches:
+            message += " " + lunch 
+        return generate_response(f"{message} and the vegetarian one is: ")
     else:
         return 
