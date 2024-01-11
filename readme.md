@@ -1,5 +1,5 @@
 # Discord bot för Pia23 
-A discord bot made for my Pia23 class of Pythonengineering AI students that answers with the daily lunchmenu, schedule, weekly schedule, or a randomly picked programming-meme from rapidAPI.com.
+A discord bot made for my Pia23 class of Pythonengineering AI students. This bot answers with the daily lunchmenu, schedule, weekly schedule, or a randomly picked programming-meme from rapidAPI.com.
 
 ## Commands
 - Dagenslunch 
