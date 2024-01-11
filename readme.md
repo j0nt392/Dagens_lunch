@@ -1,7 +1,13 @@
-En webscrape'r som hämtar veckans lunch från restaurang jöns jacob. 
+### Discord bot för Pia23 
 
-"dagenslunch" för att botten ska svara med dagens lunchalternativ. 
-"?dagenslunch" för att få lunchmenyn i privat DM. 
+## Kommandon
+- Dagenslunch
+- Dagensschema
+- Dagensklassrum
+- Veckansschema
+- Dagensmeme
+
+![Skärmbild 2024-01-11 163002](https://github.com/j0nt392/Dagens_lunch/assets/25915810/86a9167c-ed27-4d24-bf94-26e4d35a30f9)
 
 
 
