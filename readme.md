@@ -4,7 +4,8 @@ If you are a student at Nackademin and would like to use this here are the steps
 
 - Create a discord bot at the developer portal at discord, use the TOKEN from there.
 - You can use your own schedule from learnpoint
-- For the memes you need a key from rapidapi. 
+- For the memes you need a key from rapidapi.
+- Check out my repository discordLLM for a version 2 of this one, using a LLM and vectordatabases. 
 
 ## Commands
 - Dagenslunch 
