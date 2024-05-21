@@ -1,6 +1,10 @@
 # Discord bot för Pia23 
 A discord bot made for my Pia23 class of Pythonengineering AI students. This bot answers with the daily lunchmenu, schedule, weekly schedule, or a randomly picked programming-meme from rapidAPI.com.
-If you are a student at Nackademin and would like to use this, you can replace the calendar with your own and it should be good to go. 
+If you are a student at Nackademin and would like to use this here are the steps:
+
+- Create a discord bot at the developer portal at discord, use the TOKEN from there.
+- You can use your own schedule from learnpoint
+- For the memes you need a key from rapidapi. 
 
 ## Commands
 - Dagenslunch 
